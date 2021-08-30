@@ -1,14 +1,14 @@
 <template>
-  <HelloWorld msg="Hello From Extension 3" />
+  <Editor />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Editor from "./components/Editor.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    Editor,
   },
 };
 </script>
@@ -18,6 +18,5 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
 }
 </style>
