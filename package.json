@@ -11,6 +11,7 @@
   ],
   "activationEvents": [
     "onCommand:customEditor.start",
+    "onCommand:customEditor.refresh",
     "onWebviewPanel:customEditor.ConfigPanel"
   ],
   "main": "./out/extension.js",
@@ -18,8 +19,11 @@
     "commands": [
       {
         "command": "customEditor.start",
-        "title": "Start Custom Editor",
-        "category": "Custom Editor"
+        "title": "Start Custom Editor"
+      },
+      {
+        "command": "customEditor.refresh",
+        "title": "Refresh"
       }
     ]
   },

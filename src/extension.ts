@@ -8,6 +8,17 @@ export function activate(context: vscode.ExtensionContext) {
       ConfigPanel.createOrShow(context.extensionUri);
     })
   );
+  context.subscriptions.push(
+    vscode.commands.registerCommand("customEditor.refresh", () => {
+      ConfigPanel.kill();
+      ConfigPanel.createOrShow(context.extensionUri);
+      setTimeout(() => {
+        vscode.commands.executeCommand(
+          "workbench.action.webview.openDeveloperTools"
+        );
+      }, 500);
+    })
+  );
 
   if (vscode.window.registerWebviewPanelSerializer) {
     // Make sure we register a serializer in activation event

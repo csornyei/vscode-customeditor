@@ -32,6 +32,11 @@ export class ConfigPanel {
     ConfigPanel.currentPanel = new ConfigPanel(panel, extensionUri);
   }
 
+  public static kill() {
+    ConfigPanel.currentPanel?.dispose();
+    ConfigPanel.currentPanel = undefined;
+  }
+
   public static revive(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
     ConfigPanel.currentPanel = new ConfigPanel(panel, extensionUri);
   }
@@ -89,8 +94,12 @@ export class ConfigPanel {
   }
 
   private _getHtmlForWebview(webview: vscode.Webview): string {
-    const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "media", "main.js")
+    const scriptAppUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "out", "js", "app.js")
+    );
+    console.log(scriptAppUri);
+    const scriptVendorUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "out", "js", "chunk-vendors.js")
     );
     const styleVscodeUri = webview.asWebviewUri(
       vscode.Uri.joinPath(this._extensionUri, "media", "vscode.css")
@@ -107,15 +116,16 @@ export class ConfigPanel {
 					Use a content security policy to only allow loading images from https or from our extension directory,
 					and only allow scripts that have a specific nonce.
 				-->
-				<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
+				<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource} 'unsafe-inline'; script-src 'nonce-${nonce}' 'unsafe-eval';">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<link href="${styleVscodeUri}" rel="stylesheet">
 
 				<title>Cat Colors</title>
 			</head>
 			<body>
-				<h1>Hello World</h1>
-				<script nonce="${nonce}" src="${scriptUri}"></script>
+				<div id="app" />
+				<script nonce="${nonce}" src="${scriptAppUri}"></script>
+				<script nonce="${nonce}" src="${scriptVendorUri}"></script>
 			</body>
 			</html>`;
   }
