@@ -10,20 +10,26 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:customEditor.start",
-    "onCommand:customEditor.refresh",
-    "onWebviewPanel:customEditor.ConfigPanel"
+    "onCustomEditor:customEditor.ConfigEditor"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "customEditors": [
+      {
+        "viewType": "customEditor.ConfigEditor",
+        "displayName": "Custom Config",
+        "selector": [
+          {
+            "filenamePattern": "*.customeditor"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
     "commands": [
       {
-        "command": "customEditor.start",
-        "title": "Start Custom Editor"
-      },
-      {
-        "command": "customEditor.refresh",
-        "title": "Refresh"
+        "command": "customEditor.new",
+        "title": "New Custom Editor"
       }
     ]
   },

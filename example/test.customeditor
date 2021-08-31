@@ -1,0 +1,58 @@
+{
+  "elements": [
+    {
+      "id": "cALVpJekStbl0C1zSR7bKWeMRDpowFog",
+      "name": "first element",
+      "models": [
+        {
+          "mid": "a7ef",
+          "name": "Vendor model"
+        },
+        {
+          "mid": "af4e",
+          "name": "Vendor model"
+        },
+        {
+          "mid": "2214",
+          "name": "Vendor model"
+        },
+        {
+          "mid": "fda8",
+          "name": "Vendor model"
+        },
+        {
+          "mid": "e70f",
+          "name": "Vendor model"
+        }
+      ],
+      "created": 1630353379363
+    },
+    {
+      "id": "VSzd8uJBjtvIPjhJCHGLMiW0CexJFZGp",
+      "name": "second element",
+      "models": [
+        {
+          "mid": "9770",
+          "name": "Vendor model"
+        },
+        {
+          "mid": "2ad4",
+          "name": "Vendor model"
+        },
+        {
+          "mid": "5b9f",
+          "name": "Vendor model"
+        },
+        {
+          "mid": "f00",
+          "name": "Vendor model"
+        },
+        {
+          "mid": "c75d",
+          "name": "Vendor model"
+        }
+      ],
+      "created": 1630395729096
+    }
+  ]
+}

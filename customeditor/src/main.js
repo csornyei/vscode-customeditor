@@ -1,4 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 
-createApp(App).mount("#app");
+const app = createApp(App);
+
+// eslint-disable-next-line no-undef
+app.config.globalProperties.$vscode = acquireVsCodeApi();
+app.mount("#app");

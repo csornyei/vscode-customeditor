@@ -1,5 +1,6 @@
 <template>
-  <Editor />
+  <p v-if="error">{{ error }}</p>
+  <Editor v-else :config="config" />
 </template>
 
 <script>
@@ -9,6 +10,37 @@ export default {
   name: "App",
   components: {
     Editor,
+  },
+  data: function () {
+    return {
+      config: {
+        elements: [],
+      },
+      error: null,
+    };
+  },
+  mounted() {
+    window.addEventListener("message", (event) => {
+      const message = event.data;
+      switch (message.type) {
+        case "update":
+          let text = message.text;
+          let json;
+          try {
+            if (!text) {
+              text = "{}";
+            }
+            json = JSON.parse(text);
+          } catch (error) {
+            this.error = "Not a valid JSON document!";
+            return;
+          }
+          this.config = json;
+          break;
+        default:
+          break;
+      }
+    });
   },
 };
 </script>

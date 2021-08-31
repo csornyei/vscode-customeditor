@@ -15,21 +15,23 @@
 <script>
 export default {
   name: "Element",
-  props: {
-    name,
-  },
+  props: ["name", "models"],
   data: function () {
-    return {
-      models: [],
-    };
+    return {};
   },
   methods: {
     addModel: function () {
-      const models = [
-        ...this.models,
-        { mid: this.generateKey(), name: "Vendor model" },
-      ];
-      this.models = models;
+      const newModel = {
+        mid: this.generateKey(),
+        name: "Vendor model",
+      };
+      this.$vscode.postMessage({
+        type: "add-model",
+        payload: {
+          name: this.name,
+          model: newModel,
+        },
+      });
     },
     generateKey: function () {
       const n = Math.floor(Math.random() * 65536);
